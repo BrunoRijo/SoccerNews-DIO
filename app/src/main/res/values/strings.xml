@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Soccer News</string>
+    <string name="title_news">News</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="materia_mocada">As jogadores dos Guarani foram derrotadas pelo time do Icasa por fabulosos 7 x 1, isso te lembra algum episódio?</string>
+    <string name="titulo_mocado">Icasa vence o Guarani</string>
+    <string name="txt_openLink">Abrir Notícia</string>
+    <string name="articles_s_tittle">Articles\'s tittle</string>
+    <string name="article_s_image">Article\'s Image</string>
+    <string name="article_s_text">Article\'s text</string>
+    <string name="button_opens_link">Button that opens a link</string>
+    <string name="favoritesIcon">Favorites Icon</string>
+    <string name="share_icon">Share Icon</string>
+</resources>

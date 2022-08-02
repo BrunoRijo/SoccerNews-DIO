@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="8dp"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_tittle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@color/black"
+            android:contentDescription="@string/article_s_image"/>
+
+        <TextView
+            android:id="@+id/tv_tittle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_default_margin"
+            android:layout_marginTop="@dimen/activity_default_margin"
+            android:layout_marginEnd="@dimen/activity_default_margin"
+            android:text="@string/titulo_mocado"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tv_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView"
+            android:contentDescription="@string/articles_s_tittle"/>
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_default_margin"
+            android:layout_marginStart="@dimen/activity_default_margin"
+            android:layout_marginTop="@dimen/activity_default_margin"
+            android:layout_marginEnd="@dimen/activity_default_margin"
+            android:text="@string/materia_mocada"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tittle"
+            tools:ignore="MissingConstraints"
+            android:contentDescription="@string/article_s_text"/>
+
+        <Button
+            android:id="@+id/btn_openLink"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_default_margin"
+            android:layout_marginBottom="@dimen/activity_default_margin"
+            android:text="@string/txt_openLink"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_desc"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc"
+            android:contentDescription="@string/button_opens_link"/>
+
+        <ImageButton
+            android:id="@+id/imgFavorite"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_openLink"
+            app:layout_constraintEnd_toStartOf="@+id/imgShare"
+            app:layout_constraintTop_toTopOf="@+id/btn_openLink"
+            app:srcCompat="@drawable/ic_favorite_star_24"
+            tools:ignore="MissingConstraints"
+            android:contentDescription="@string/favoritesIcon"/>
+
+        <ImageButton
+            android:id="@+id/imgShare"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_openLink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_openLink"
+            app:srcCompat="@drawable/ic_share_24"
+            android:contentDescription="@string/share_icon"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>
