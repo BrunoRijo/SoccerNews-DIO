@@ -1,20 +1,17 @@
 package br.com.bruno.soccernews.domain;
 
 public class News {
+    private String title;
     private String description;
-    private String tittle;
+    private String image;
+    private String link;
 
-    public News(String description, String tittle) {
-        this.description = description;
-        this.tittle = tittle;
+    public String getTitle() {
+        return title;
     }
 
-    public String getTittle() {
-        return tittle;
-    }
-
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -25,5 +22,19 @@ public class News {
         this.description = description;
     }
 
+    public String getImage() {
+        return image;
+    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 }

@@ -7,21 +7,45 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.bruno.soccernews.data.remote.SoccerNewsAPI;
 import br.com.bruno.soccernews.domain.News;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewsViewModel extends ViewModel {
 
-    private final MutableLiveData<List<News>> news;
+    private final MutableLiveData<List<News>> news = new MutableLiveData<>();
+    private final SoccerNewsAPI api;
 
     public NewsViewModel() {
-        this.news = new MutableLiveData<>();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://brunorijo.github.io/SoccerNews-API/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        List<News> news = new ArrayList<News>();
-        news.add(new News("Flamengo vence por 30 a 0", "Vitória arrasadora do Fla"));
-        news.add(new News("Palmeiras perde mais uma vez e segue sem mundial", "Palmeiras perde!"));
-        news.add(new News("Você conhece? Ninguém conhece esse time mas ele existe!", "O time da camisa azul e branco"));
+        api = retrofit.create(SoccerNewsAPI.class);
+        findNews();
+    }
 
-        this.news.setValue(news);
+    private void findNews() {
+        api.getNews().enqueue(new Callback<List<News>>() {
+            @Override
+            public void onResponse(Call<List<News>> call, Response<List<News>> response) {
+                if (response.isSuccessful()) {
+                    news.setValue(response.body());
+                } else {
+                    // TODO PENSAR EM UMA ESTRATÉGIA DE TRATAMENTO DE ERROS
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<News>> call, Throwable t) {
+                // TODO PENSAR EM UMA ESTRATÉGIA DE TRATAMENTO DE ERROS
+            }
+        });
     }
 
     public LiveData<List<News>> getNews() {
