@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import br.com.bruno.soccernews.databinding.NewsItemBinding;
@@ -32,6 +34,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         News news = this.news.get(position);
         holder.binding.tvTittle.setText(news.getTitle());
         holder.binding.tvDesc.setText(news.getDescription());
+        Picasso.get()
+                .load(news.getImage())
+                .fit()
+                .into(holder.binding.imageView );
     }
 
     @Override
