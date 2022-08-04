@@ -1,5 +1,7 @@
 package br.com.bruno.soccernews.ui.adapter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -16,9 +18,11 @@ import br.com.bruno.soccernews.domain.News;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     private final List<News> news;
+    private final FavoriteListener favoriteListener;
 
-    public NewsAdapter(List<News> news) {
+    public NewsAdapter(List<News> news , FavoriteListener favoriteListener) {
         this.news = news;
+        this.favoriteListener = favoriteListener;
     }
 
     @NonNull
@@ -32,12 +36,36 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         News news = this.news.get(position);
-        holder.binding.tvTittle.setText(news.getTitle());
-        holder.binding.tvDesc.setText(news.getDescription());
+        holder.binding.tvTittle.setText(news.title);
+        holder.binding.tvDesc.setText(news.description);
+
+        //Utilizando a biblioteca Picasso para consumir a imagem da API.
         Picasso.get()
-                .load(news.getImage())
+                .load(news.image)
                 .fit()
                 .into(holder.binding.imageView );
+
+        //Implementação da funcionalidade de abrir link
+        holder.binding.btnOpenLink.setOnClickListener(view ->{
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(news.link));
+                    holder.itemView.getContext().startActivity(i);
+                });
+
+        //Implementação da funcionalidade de compatilhar
+        holder.binding.btnShareNews.setOnClickListener(view -> {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setType("text/plain");
+            i.putExtra(Intent.EXTRA_TEXT, news.link);
+            holder.itemView.getContext().startActivity(Intent.createChooser(i,"Share via"));
+        });
+
+        //Implementação da funcionalidade de favoritar, o evento será instanciado pelo fragment
+        holder.binding.btnFavoriteNews.setOnClickListener(view -> {
+            news.favorited = !news.favorited;
+            this.favoriteListener.onFavorite(news);
+            notifyItemChanged(position);
+        });
     }
 
     @Override
@@ -53,5 +81,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
+
+    public interface FavoriteListener {
+        void onFavorite(News news);
     }
 }

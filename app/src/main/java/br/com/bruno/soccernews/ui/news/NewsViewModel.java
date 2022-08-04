@@ -3,10 +3,12 @@ package br.com.bruno.soccernews.ui.news;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.room.Room;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.bruno.soccernews.data.local.AppDatabase;
 import br.com.bruno.soccernews.data.remote.SoccerNewsAPI;
 import br.com.bruno.soccernews.domain.News;
 import retrofit2.Call;
