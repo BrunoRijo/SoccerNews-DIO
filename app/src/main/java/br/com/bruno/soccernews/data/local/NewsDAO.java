@@ -13,7 +13,7 @@ import br.com.bruno.soccernews.domain.News;
 public interface NewsDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(News news);
+    void save(News news);
 
     @Query("SELECT * FROM news WHERE  favorited = 1")
     List<News> loadFavoriteNews();

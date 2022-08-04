@@ -66,6 +66,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             this.favoriteListener.onFavorite(news);
             notifyItemChanged(position);
         });
+
+        //Alternando a cor do icone de favorito quando ele for clicado.
+        int favoriteColor = news.favorited ?  android.R.color.holo_blue_light : android.R.color.black;
+        holder.binding.btnFavoriteNews.setColorFilter(
+                holder.itemView.getContext().getResources().getColor(favoriteColor)
+        );
     }
 
     @Override
